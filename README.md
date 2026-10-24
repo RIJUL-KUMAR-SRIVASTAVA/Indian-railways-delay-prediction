@@ -1,39 +1,59 @@
-
 # Indian Railways Train Delay Prediction
 
-## Project Overview
-This project uses Machine Learning to predict arrival delay at the next railway station based on current station information.
+## About the Project
 
-## Technologies Used
+I built this project to predict how late a train might reach its next station. The prediction is based on the train number, current station, station sequence number, and the current arrival delay.
+
+I used Python to prepare the data and train the model, then built a Streamlit app so users can try out predictions without running the model manually.
+
+## Tools and Technologies
+
 - Python
 - Pandas
 - Scikit-learn
 - Streamlit
 - Joblib
 
-## Machine Learning Models
-- Linear Regression
-- Decision Tree Regressor
+## How It Works
 
-The models were compared using Mean Absolute Error (MAE) and R² score. The Decision Tree was selected for the Streamlit application based on the initial evaluation.
+1. Select a train from the dropdown list.
+2. Choose the current station.
+3. Enter the train's current arrival delay in minutes.
+4. Click **Predict Next Station Delay** to get the estimated delay at the next station.
 
-## Features
-- Enter train number
-- Enter current station code
-- Enter station sequence number
-- Enter current arrival delay
-- Predict the next station's arrival delay
+The app uses a trained Decision Tree Regressor to make the prediction.
 
-## Run Locally
+## Model Performance
+
+I evaluated the model on a test set of 401 records.
+
+- **Mean Absolute Error (MAE):** 28.72 minutes
+- **R² Score:** 0.9151
+
+These are results from a random train-test split of a 3,000-record sample. The actual delay can be different from the predicted delay, and performance on unseen train journeys may vary.
+
+## Run the Project Locally
+
 1. Install Python.
-2. Install dependencies:
+2. Download or clone this repository.
+3. Open a terminal in the project folder.
+4. Install the required packages:
 
-   `pip install -r requirements.txt`
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-3. Place `railway_delay_model.pkl` and `model_columns.pkl` in the project folder.
-4. Start the app:
+5. Make sure these files are present in the project folder:
+   - `railway_delay_model.pkl`
+   - `model_columns.pkl`
+   - `train_routes.csv`
 
-   `streamlit run app.py`
+6. Start the app:
+
+   ```bash
+   streamlit run app.py
+   ```
 
 ## Limitations
-This is a prototype trained on historical data. Predictions are estimates and are not live railway status information.
+
+This project gives an ML-based estimate using the available dataset. It does not fetch live train running status from Indian Railways, so the predicted delay may not match the actual arrival time.
